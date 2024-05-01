@@ -1,13 +1,21 @@
-const priceArray=document.querySelectorAll('[data-ns-test="price"]');
-let table=document.getElementById("table1");
-let ans=0;
-for (let i = 0; i < priceArray.length; i++) {
-	ans+=parseInt(priceArray[i].innerText);
-}
-let total=document.createElement("tr");
- 
-total.setAttribute("data-ns-test", "grandTotal");
- 
-total.innerText=ans;
- 
-table.appendChild(total);
+const getSumBtn = document.createElement("button");
+getSumBtn.append("Get Total Price");
+document.body.appendChild(getSumBtn);
+
+let table = document.querySelector("table")
+let itemPrice = document.querySelectorAll(".price")
+
+const getSum = () => {
+	let newRow = document.createElement("tr")
+	newRow.id = "ans"
+	let newCell = document.createElement("td")
+	let totalPrice = 0
+	for(let t of itemPrice){
+		totalPrice += +t.innerText
+	} 
+	newCell.innerText = `${totalPrice}`
+	newRow.append(newCell)
+	table.append(newRow)
+};
+
+getSumBtn.addEventListener("click", getSum);
